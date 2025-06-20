@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Django Stuff
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# dotenv files (secrets)
+.env
+.env.*
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+
+# pytest
+.cache/
+.pytest_cache/
+
+# Swagger
+*.swagger.json
+*.swagger.yaml
