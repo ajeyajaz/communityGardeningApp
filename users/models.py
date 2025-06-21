@@ -13,7 +13,21 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.username} - {self.email}'
 
+#user Profile
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
+    avatar = models.ImageField(upload_to='avatars/', blank=True)
+    address = models.CharField(max_length=255,blank=True)
+    interests = models.TextField(blank=True)
+    skills = models.TextField(blank=True)
 
+    class Meta:
+        db_table = 'user_profiles'
+
+
+
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
 
 
 
