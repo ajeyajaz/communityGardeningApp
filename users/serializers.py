@@ -1,5 +1,5 @@
 import re
-from .models import User
+from .models import User, Profile
 from django.contrib.auth import password_validation
 
 from rest_framework import  serializers
@@ -25,7 +25,8 @@ class UserSignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username','email','password']
+        fields = ['username','email','password','id']
+        read_only_fields = ['id']
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -34,6 +35,13 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             password=validated_data.get('password')
         )
         return user
+
+class UserProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'address', 'interests','skills']
+
 
 
 
