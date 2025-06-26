@@ -11,7 +11,7 @@ class User(AbstractUser):
         db_table = 'users'
 
     def __str__(self):
-        return f'{self.username} - {self.email}'
+        return f'{self.username}'
 
 #user Profile
 class Profile(models.Model):
@@ -23,8 +23,6 @@ class Profile(models.Model):
 
     class Meta:
         db_table = 'user_profiles'
-
-
 
     def __str__(self):
         return f"{self.user.username}'s Profile"

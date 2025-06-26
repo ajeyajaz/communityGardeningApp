@@ -1,43 +1,48 @@
-from rest_framework.generics import(
-    CreateAPIView,
-    UpdateAPIView,
-    ListAPIView
-)
+from rest_framework import  generics
 from .serializers import (
     UserSignUpSerializer,
     UserProfileSerializer,
 )
+from rest_framework import views
+from rest_framework.response import  Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.serializers import ValidationError
-from .permissions import IsOwner
-
-from .models import Profile,User
+from rest_framework.exceptions import  ValidationError
+from .models import Profile
 
 
-class UserSignUpAPIView(CreateAPIView):
+"Signup API"
+class UserSignUpAPIView(generics.CreateAPIView):
     serializer_class = UserSignUpSerializer
 
 
-class UserProfileCreateAPIView(CreateAPIView):
+" Update API, only authenticate users can update profile"
+class UserProfileUpdateAPIView(views.APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = UserProfileSerializer
 
-    def perform_create(self, serializer):
-        if Profile.objects.filter(user=self.request.user).exists():
-            raise ValidationError({'detail': 'profile already exists'})
-        user = self.request.user
-        serializer.save(user=user)
+    def get_object(self):
+        return Profile.objects.get(user=self.request.user)
 
-
-class UserProfileUpdateAPIView(UpdateAPIView):
-    queryset = Profile.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
-    serializer_class = UserProfileSerializer
+    def put(self,request):
+        profile = self.get_object()
+        serializer = UserProfileSerializer(instance=profile,data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
 
-class UserList(ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSignUpSerializer
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

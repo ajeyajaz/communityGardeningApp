@@ -15,7 +15,6 @@ from pathlib import Path
 
 from django.conf.global_settings import AUTH_USER_MODEL
 from dotenv import load_dotenv
-
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,6 +46,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS +=[
     'rest_framework',
     'users',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
