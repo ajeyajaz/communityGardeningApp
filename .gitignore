@@ -38,7 +38,6 @@ local_settings.py
 Thumbs.db
 
 # dotenv files (secrets)
-.env
 .env.*
 
 # Coverage reports
