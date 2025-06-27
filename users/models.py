@@ -16,7 +16,7 @@ class User(AbstractUser):
 #user Profile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
-    avatar = models.ImageField(upload_to='avatars/', blank=True)
+    avatar = models.ImageField(upload_to='avatars/', blank=True,null=True)
     address = models.CharField(max_length=255,blank=True)
     interests = models.TextField(blank=True)
     skills = models.TextField(blank=True)
@@ -26,7 +26,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
-
 
 
 

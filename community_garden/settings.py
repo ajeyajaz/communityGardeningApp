@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS +=[
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_filters',
     'users',
     'events'
 ]
@@ -121,8 +122,11 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS':
+    ['django_filters.rest_framework.DjangoFilterBackend'],
 }
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,

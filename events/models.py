@@ -3,7 +3,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from users.models import User
 
 class Event(models.Model):
-
     STATUS_CHOICES = [
         ('upcoming', 'Upcoming'),
         ('ongoing', 'Ongoing'),
