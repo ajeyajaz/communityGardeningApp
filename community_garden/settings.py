@@ -51,6 +51,7 @@ INSTALLED_APPS +=[
     'events',
     'comments',
     'notifications',
+    'drf_yasg',
 
 ]
 
