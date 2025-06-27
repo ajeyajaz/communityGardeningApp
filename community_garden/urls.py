@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/',include('users.urls')),
     path('api/events/',include('events.urls')),
+    path('api/comments/',include('comments.urls')),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
