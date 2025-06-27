@@ -48,11 +48,11 @@ class EventListCreateAPIView(generics.ListCreateAPIView):
 class EventJoinAPIView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_object(self,event_id):
-        return get_object_or_404(Event,id=event_id)
+    def get_object(self,id):
+        return get_object_or_404(Event,id=id)
 
-    def post(self, request, event_id):
-        event = self.get_object(event_id)
+    def post(self, request, id):
+        event = self.get_object(id)
 
         # cannot join again if already joined
         if EventParticipant.objects.filter(user=request.user, event=event).exists():
@@ -74,11 +74,11 @@ class EventJoinAPIView(views.APIView):
 class EventLeaveAPIView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_object(self, event_id):
-        return get_object_or_404(Event, id=event_id)
+    def get_object(self, id):
+        return get_object_or_404(Event, id=id)
 
-    def post(self, request, event_id):
-        event = self.get_object(event_id)
+    def post(self, request, id):
+        event = self.get_object(id)
 
         try:
             # check if user, joined before leave

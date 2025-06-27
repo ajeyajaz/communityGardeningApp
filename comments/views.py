@@ -13,7 +13,3 @@ class CommentListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         event_id = self.kwargs['event_id']
         serializer.save(user=self.request.user, event_id=event_id)
-
-
-
-
